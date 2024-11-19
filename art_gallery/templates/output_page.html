@@ -1,0 +1,30 @@
+<!-- output_page.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Style Transfer Result</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="text-center">Your Uploaded Images and Stylized Result</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <h4>Original Image</h4>
+                <img src="{{ original_image_url }}" class="img-fluid" alt="Original Image">
+            </div>
+            <div class="col-md-4">
+                <h4>Style Image</h4>
+                <img src="{{ style_image_url }}" class="img-fluid" alt="Style Image">
+            </div>
+            <div class="col-md-4">
+                <h4>Stylized Result</h4>
+                <img src="{{ stylized_image_url }}" class="img-fluid" alt="Stylized Result">
+            </div>
+        </div>
+    </div>
+</body>
+</html>

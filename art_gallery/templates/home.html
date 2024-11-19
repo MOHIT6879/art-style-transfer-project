@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - AI Art Gallery</title>
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="hero-section">
+        <div class="overlay"></div>
+        <div class="hero-content">
+            <h1>Welcome to AI Art Gallery</h1>
+            <p>Transform your creativity with AI-powered art tools</p>
+            <div class="hero-buttons">
+                <a href="{% url 'transfer_style' %}" class="btn-primary">Style Transfer</a>
+                <a href="{% url 'three_d_images_page' %}" class="btn-secondary">3D Images</a>
+                <a href="{% url 'art_gallery' %}" class="btn-secondary">Art Gallery</a>
+            </div>
+        </div>
+    </header>
+    <section class="features-section">
+        <div class="feature">
+            <img src="{% static 'images/style_transfer.jpg' %}" alt="Style Transfer">
+            <h2>Style Transfer</h2>
+            <p>Turn your photos into masterpieces inspired by famous art styles.</p>
+        </div>
+        <div class="feature">
+            <img src="{% static 'images/3d_images.jpg' %}" alt="3D Images">
+            <h2>3D Image Synthesis</h2>
+            <p>Bring your ideas to life with AI-driven 3D image generation.</p>
+        </div>
+        <div class="feature">
+            <img src="{% static 'images/art_gallery.jpg' %}" alt="Art Gallery">
+            <h2>User Art Gallery</h2>
+            <p>Explore and showcase your artworks in a personalized gallery.</p>
+        </div>
+    </section>
+    <footer class="footer">
+        <p>&copy; 2024 AI Art Gallery. All rights reserved.</p>
+    </footer>
+</body>
+</html>

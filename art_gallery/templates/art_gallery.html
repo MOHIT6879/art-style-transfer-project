@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Art Gallery</title>
+    <link rel="stylesheet" href="{% static 'css/art_gallery.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="gallery-container">
+        <header class="gallery-header">
+            <h1>User Art Gallery</h1>
+            <form action="{% url 'upload_art' %}" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <label for="upload" class="upload-btn">
+                    Upload Artwork
+                    <input type="file" id="upload" name="artwork" accept="image/*" required>
+                </label>
+                <button type="submit" class="btn-primary">Submit</button>
+            </form>
+        </header>
+        <section class="gallery-grid">
+            {% for image in artworks %}
+            <div class="gallery-item">
+                <img src="{{ image.url }}" alt="User Artwork">
+                <div class="overlay">
+                    <p>{{ image.title }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </section>
+    </div>
+</body>
+</html>

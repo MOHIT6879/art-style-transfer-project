@@ -1,0 +1,58 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Image Synthesis</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">3D Image Synthesis</h2>
+
+        <!-- Option 1: Scratch Pad -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5>Draw on the Scratch Pad</h5>
+            </div>
+            <div class="card-body">
+                <canvas id="scratchPad" width="500" height="500" style="border: 1px solid black;"></canvas>
+                <button id="clearCanvas" class="btn btn-secondary mt-3">Clear</button>
+                <button id="submitCanvas" class="btn btn-primary mt-3">Submit Drawing</button>
+            </div>
+        </div>
+
+        <!-- Option 2: Upload File -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5>Upload Label Map</h5>
+            </div>
+            <div class="card-body">
+                <form action="{% url 'generate_3d' %}" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="inputImage">Upload a Label Map</label>
+                        <input type="file" name="input_image" class="form-control" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Generate 3D Image</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Output Section -->
+        <div class="card">
+            <div class="card-header">
+                <h5>Generated Output</h5>
+            </div>
+            <div class="card-body">
+                <img id="outputImage" src="" alt="Generated 3D Image" class="img-fluid d-none">
+                <p id="outputPlaceholder" class="text-muted">Your generated 3D image will appear here.</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="{% static 'js/scratchpad.js' %}"></script>
+</body>
+</html>

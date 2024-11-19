@@ -1,0 +1,68 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Style Transfer</title>
+    <link rel="stylesheet" href="{% static 'css/style_transfer.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="text-center">Style Transfer</h2>
+        <p class="text-center">Upload your original image and the style image to create a unique artwork.</p>
+        
+        <!-- Upload Form -->
+        <form action="{% url 'transfer_style' %}" method="POST" enctype="multipart/form-data" class="style-form">
+            {% csrf_token %}
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="originalImage">Original Image</label>
+                    <input type="file" name="original_image" class="form-control" required>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="styleImage">Style Image</label>
+                    <input type="file" name="style_image" class="form-control" required>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Apply Style Transfer</button>
+        </form>
+
+        <!-- Display Results -->
+        {% if result_image_url %}
+            <div class="result mt-5">
+                <h3 class="text-center">Stylized Result</h3>
+                <div class="row">
+                    <div class="col-md-4 text-center">
+                        <h5>Original Image</h5>
+                        <img src="{{ original_image_url }}" class="img-fluid img-thumbnail" alt="Original">
+                    </div>
+                    <div class="col-md-4 text-center">
+                        <h5>Style Image</h5>
+                        <img src="{{ style_image_url }}" class="img-fluid img-thumbnail" alt="Style">
+                    </div>
+                    <div class="col-md-4 text-center">
+                        <h5>Stylized Result</h5>
+                        <img src="{{ result_image_url }}" class="img-fluid img-thumbnail" alt="Result">
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+
+        <!-- Previously Uploaded Images -->
+        {% if uploaded_images %}
+            <div class="uploaded-images mt-5">
+                <h3 class="text-center">Your Uploaded Images</h3>
+                <div class="row">
+                    {% for image in uploaded_images %}
+                        <div class="col-md-3">
+                            <img src="{{ image.url }}" class="img-fluid img-thumbnail" alt="Uploaded Image">
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>

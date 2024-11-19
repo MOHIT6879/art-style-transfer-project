@@ -1,0 +1,29 @@
+<!-- templates/upload_page.html -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Driven Art Style Transfer Gallery</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="text-center">Upload Your Images</h2>
+        <form action="{% url 'transfer_style' %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="originalImage">Upload Original Image</label>
+                <input type="file" name="original_image" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="styleImage">Upload Style Image</label>
+                <input type="file" name="style_image" class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Apply Style Transfer</button>
+        </form>
+    </div>
+</body>
+</html>
